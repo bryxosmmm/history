@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import './App.css'
 import epoch1Image from './assets/epoch_1_slide_1.jpg'
@@ -70,6 +71,51 @@ const fourthEpoch = {
   body2: 'В современном описании герба есть важные детали. Над орлом расположены три короны. На щите изображен всадник с копьем, поражающий дракона. В законе он назван именно всадником, без нимба и без отдельного имени.'
 }
 
+const imageFacts = {
+  epoch1Slide1: {
+    title: 'Конец XV - начало XVI века',
+    text: 'В 1497 году двуглавый орел появился на печати рядом с всадником. Так два разных знака впервые оказались в одной композиции.'
+  },
+  epoch1Slide2: {
+    title: 'Начало XVII века',
+    text: 'Печать была не просто украшением. Без нее документ мог не иметь силы, поэтому изображение орла становилось частью официальной процедуры.'
+  },
+  epoch1Slide3: {
+    title: 'XV-XVI века',
+    text: 'Единого стандарта рисунка долго не было. Один и тот же символ мог выглядеть по-разному на печатях, монетах и в рукописях.'
+  },
+  epoch2Slide1: {
+    title: 'XVII-XIX века',
+    text: 'Три короны появились не сразу. До этого орла могли изображать без привычного современному зрителю набора деталей.'
+  },
+  epoch2Slide2: {
+    title: 'XVIII-XIX века',
+    text: 'Герб помещали даже на бытовые и парадные вещи. Так государственный знак выходил за пределы документов и становился частью интерьера.'
+  },
+  epoch2Slide3: {
+    title: 'XVIII-XIX века',
+    text: 'Орден учредил Петр I в 1698 году. Буквы SAPR являются латинским девизом ордена.'
+  },
+  epoch3Slide1: {
+    title: '1917 год',
+    text: 'В 1917 году орла не убрали сразу. Сначала его просто лишили корон, скипетра и державы, поэтому знак стал заметно проще.',
+  },
+  epoch3Slide2: {
+    title: '1923-1991 годы',
+    text: 'На гербе СССР число лент менялось. Оно зависело от количества союзных республик в разные годы.',
+  },
+  epoch4Slide1: {
+    title: 'С 1993 года',
+    text: 'Современный герб сначала утвердили указом в 1993 году. Позже его описание закрепили отдельным федеральным законом.',
+  },
+  epoch4Slide2: {
+    title: '1990-е годы',
+    text: 'На монетах 1990-х часто встречается орел Банка России. Он похож на государственный символ, но это отдельная эмблема.'
+  },
+} as const
+
+type ImageFactKey = keyof typeof imageFacts
+
 const slideMotion = {
   initial: { opacity: 0, y: 36, filter: 'blur(8px)' },
   whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
@@ -78,6 +124,65 @@ const slideMotion = {
 } as const
 
 function App() {
+  const [openFact, setOpenFact] = useState<ImageFactKey | null>(null)
+
+  useEffect(() => {
+    const closeFact = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+
+      if (!target.closest('[data-fact-popover]')) {
+        setOpenFact(null)
+      }
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpenFact(null)
+      }
+    }
+
+    document.addEventListener('pointerdown', closeFact)
+    document.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      document.removeEventListener('pointerdown', closeFact)
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [])
+
+  const FactButton = ({ factKey }: { factKey: ImageFactKey }) => {
+    const fact = imageFacts[factKey]
+    const isOpen = openFact === factKey
+
+    return (
+      <>
+        <button
+          className="fact-button"
+          type="button"
+          data-fact-popover
+          onClick={(event) => {
+            event.stopPropagation()
+            setOpenFact(factKey)
+          }}
+          aria-expanded={isOpen}
+          aria-label="Показать факт"
+        >
+          i
+        </button>
+        {isOpen && (
+          <div
+            className="fact-panel"
+            data-fact-popover
+            onPointerDown={(event) => event.stopPropagation()}
+          >
+            <p className="fact-panel-title">{fact.title}</p>
+            <p className="fact-panel-text">{fact.text}</p>
+          </div>
+        )}
+      </>
+    )
+  }
+
   return (
     <main className="site-shell text-stone-950">
       <section id="intro" className="snap-section archive-grid flex min-h-svh items-center justify-center overflow-hidden px-6 py-10 text-center sm:px-10 lg:px-16 lg:py-14 xl:px-20">
@@ -130,6 +235,7 @@ function App() {
                 alt="Зарождение символа"
                 className="max-h-[66vh] w-full object-contain rounded-[10px]"
               />
+              <FactButton factKey="epoch1Slide1" />
             </div>
           </div>
         </motion.div>
@@ -163,6 +269,7 @@ function App() {
                   alt="Ранние оттиски печатей"
                   className="w-[min(70vw,360px)] object-contain"
                 />
+                <FactButton factKey="epoch1Slide2" />
               </div>
               <p className="max-w-sm border-t border-stone-950/20 pt-4 text-base leading-7 text-stone-700">
                 Здесь хорошо видно, что ранний орел еще далек от поздней парадной
@@ -177,6 +284,7 @@ function App() {
                   alt="Рукописная графика"
                   className="w-[min(66vw,330px)] object-contain"
                 />
+                <FactButton factKey="epoch1Slide3" />
               </div>
               <p className="max-w-sm border-t border-stone-950/20 pt-4 text-base leading-7 text-stone-700">
                 Позднее мастера начали точнее выделять головы, крылья и грудной щит.
@@ -262,6 +370,7 @@ function App() {
                         : 'max-h-[56vh] max-w-[min(70vw,390px)] object-contain'
                   }
                 />
+                <FactButton factKey={index === 0 ? 'epoch2Slide1' : index === 1 ? 'epoch2Slide2' : 'epoch2Slide3'} />
               </div>
             </div>
           </motion.div>
@@ -331,6 +440,7 @@ function App() {
                     alt="Герб Временного правительства"
                     className="w-[min(72vw,330px)] object-contain"
                   />
+                  <FactButton factKey="epoch3Slide1" />
                 </div>
               </div>
 
@@ -376,6 +486,7 @@ function App() {
                 alt="Советская эмблема"
                 className="max-h-[50vh] max-w-[min(72vw,430px)] object-contain"
               />
+              <FactButton factKey="epoch3Slide2" />
             </div>
 
           </div>
@@ -445,6 +556,7 @@ function App() {
                 alt="Современный герб России"
                 className="max-h-[56vh] max-w-[min(72vw,380px)] object-contain"
               />
+              <FactButton factKey="epoch4Slide1" />
             </div>
           </div>
         </motion.div>
@@ -462,6 +574,7 @@ function App() {
                 alt="Монеты 90-х с современным гербом"
                 className="max-h-[52vh] max-w-[min(76vw,560px)] object-contain"
               />
+              <FactButton factKey="epoch4Slide2" />
             </div>
           </div>
 
