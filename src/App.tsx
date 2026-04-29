@@ -6,9 +6,13 @@ import epoch3Image from './assets/epoch_1_slide_3.jpg'
 import epoch2Slide1Image from './assets/epoch_2_slide_1.jpg'
 import epoch2Slide2Image from './assets/epoch_2_slide_2.jpg'
 import epoch2Slide3Image from './assets/epoch_2_slide_3.jpg'
+import epoch3Slide1Image from './assets/epoch_3_slide_1.jpg'
+import epoch3Slide2Image from './assets/epoch_3_slide_2.jpg'
+import epoch4Slide1Image from './assets/epoch_4_slide_1.jpg'
+import epoch4Slide2Image from './assets/epoch_4_slide_2.jpg'
 
 const firstEpoch = {
-  number: '01',
+  number: 'I',
   period: 'XV – XVI века',
   title: 'Зарождение символа',
   subtitle: 'Византийское наследие',
@@ -16,7 +20,7 @@ const firstEpoch = {
 }
 
 const secondEpoch = {
-  number: '02',
+  number: 'II',
   period: 'XVII – XIX века',
   title: 'Имперский размах',
   subtitle: 'Тайный язык символов',
@@ -48,6 +52,24 @@ const imperialSlides = [
   },
 ]
 
+const thirdEpoch = {
+  number: 'III',
+  period: '1917 – 1991 годы',
+  title: 'Разрыв с прошлым',
+  subtitle: 'Старый герб исчезает из государственного языка',
+  body: 'Эпоха великих потрясений 1917 года радикально изменила облик страны и её символы. После свержения монархии Временное правительство попыталось «демократизировать» герб: с орла были сняты короны, и он стал похож на самую раннюю версию времен Ивана III.',
+  body2: 'После Октябрьского переворота старый герб был полностью упразднен. Двуглавый орел стал восприниматься как символ самодержавия и угнетения, а на десятилетия его заменили серп, молот, колосья и земной шар.',
+}
+
+const fourthEpoch = {
+  number: 'IV',
+  period: '1993 год – наши дни',
+  title: 'Возрождение и современность',
+  subtitle: 'Историческая форма в новой государственной системе',
+  body: 'Исторический двуглавый орел вернулся в 1993 году, став символом новой Российской Федерации. Современный герб — это золотой орел на красном фоне, сохраняющий преемственность поколений.',
+  body2: 'Три короны сегодня — не «три ветви власти», а дань многовековой истории. Всадник на груди орла по закону не называется Святым Георгием Победоносцем и изображается без нимба: это общий символ защиты Отечества, борьбы добра со злом и света с тьмой.',
+}
+
 const slideMotion = {
   initial: { opacity: 0, y: 36, filter: 'blur(8px)' },
   whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
@@ -58,7 +80,7 @@ const slideMotion = {
 function App() {
   return (
     <main className="site-shell text-stone-950">
-      <section className="snap-section archive-grid flex min-h-svh items-center justify-center overflow-hidden px-6 py-10 text-center sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+      <section id="intro" className="snap-section archive-grid flex min-h-svh items-center justify-center overflow-hidden px-6 py-10 text-center sm:px-10 lg:px-16 lg:py-14 xl:px-20">
         <motion.div {...slideMotion} className="relative z-10 flex flex-col items-center">
           <h1 className="max-w-[980px] font-serif text-[clamp(5.2rem,14vw,13rem)] leading-[0.86] tracking-normal">
             Орел
@@ -75,7 +97,7 @@ function App() {
         </motion.div>
       </section>
 
-      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+      <section id="epoch-1" className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
         <motion.div
           {...slideMotion}
           className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 md:grid-cols-[1fr_0.95fr] lg:min-h-[calc(100svh-7rem)] lg:gap-16"
@@ -113,7 +135,7 @@ function App() {
         </motion.div>
       </section>
 
-      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+      <section id="epoch-1-forms" className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
         <motion.div
           {...slideMotion}
           className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-10 py-4 md:grid-cols-[0.7fr_1fr] lg:min-h-[calc(100svh-7rem)] lg:gap-14"
@@ -164,22 +186,32 @@ function App() {
         </motion.div>
       </section>
 
-      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+      <section id="epoch-2" className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
         <motion.div
           {...slideMotion}
-          className="flex min-h-[calc(100svh-5rem)] flex-col justify-center lg:min-h-[calc(100svh-7rem)]"
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 lg:min-h-[calc(100svh-7rem)]"
         >
-          <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
-            Эпоха {secondEpoch.number} / {secondEpoch.period}
-          </p>
-          <h2 className="mt-6 max-w-5xl font-serif text-[clamp(3.8rem,9vw,9rem)] leading-[0.88]">
-            {secondEpoch.title}
-          </h2>
-          <div className="my-9 h-px w-96 max-w-full bg-stone-950/30" />
-          <p className="max-w-2xl text-2xl leading-9 text-stone-700">
-            {secondEpoch.subtitle}
-          </p>
-          <div className="mt-14 grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[0.7fr_1.3fr] md:items-end">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+                Эпоха {secondEpoch.number}
+              </p>
+              <p className="mt-5 font-serif text-[clamp(4.5rem,12vw,12rem)] leading-none text-stone-950">
+                XVII–XIX
+              </p>
+            </div>
+
+            <div>
+              <h2 className="max-w-5xl font-serif text-[clamp(3.6rem,8vw,8rem)] leading-[0.9]">
+                {secondEpoch.title}
+              </h2>
+              <p className="mt-7 max-w-2xl text-2xl leading-9 text-stone-700">
+                {secondEpoch.subtitle}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid max-w-6xl grid-cols-1 gap-10 border-t border-stone-950/20 pt-9 md:grid-cols-2">
             <p className="text-lg leading-8 text-stone-700 sm:text-xl">
               {secondEpoch.body}
             </p>
@@ -234,6 +266,221 @@ function App() {
           </motion.div>
         </section>
       ))}
+
+      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+        <motion.div
+          {...slideMotion}
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 lg:min-h-[calc(100svh-7rem)]"
+        >
+          <div className="max-w-6xl">
+            <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+              Эпоха {thirdEpoch.number} / {thirdEpoch.period}
+            </p>
+            <h2 className="mt-6 font-serif text-[clamp(4rem,10vw,9.5rem)] leading-[0.86]">
+              {thirdEpoch.title}
+            </h2>
+            <p className="mt-8 max-w-3xl text-2xl leading-9 text-stone-700">
+              {thirdEpoch.subtitle}
+            </p>
+          </div>
+
+          <div className="grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-[1fr_auto_1fr] md:items-start">
+            <p className="text-lg leading-8 text-stone-700 sm:text-xl">
+              {thirdEpoch.body}
+            </p>
+            <p className="hidden font-serif text-7xl leading-none text-stone-950/30 md:block">
+              /
+            </p>
+            <p className="text-lg leading-8 text-stone-700 sm:text-xl">
+              {thirdEpoch.body2}
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+        <motion.div
+          {...slideMotion}
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 md:grid-cols-[0.82fr_1.18fr] lg:min-h-[calc(100svh-7rem)] lg:gap-16"
+        >
+          <div className="flex flex-col justify-center">
+            <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+              Февраль 1917
+            </p>
+            <h2 className="mt-5 max-w-3xl font-serif text-[clamp(3rem,7vw,6.6rem)] leading-[0.9]">
+              Короны исчезают
+            </h2>
+            <div className="my-8 h-px w-72 max-w-full bg-stone-950/30" />
+            <p className="max-w-xl text-lg leading-8 text-stone-700 sm:text-xl">
+              Временное правительство не отказалось от орла сразу, но сняло с него
+              главные монархические признаки. Символ стал строже — почти как в
+              ранней московской печати.
+            </p>
+          </div>
+
+          <div className="grid content-center gap-8">
+            <p className="text-center font-serif text-[clamp(6rem,14vw,12rem)] leading-none text-stone-950">
+              1917
+            </p>
+
+            <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+              <div className="flex justify-center">
+                <div className="image-frame inline-flex max-w-[72vw] p-3">
+                  <img
+                    src={epoch3Slide1Image}
+                    alt="Герб Временного правительства"
+                    className="w-[min(72vw,330px)] object-contain"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-center md:justify-start">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+                    исчезли
+                  </p>
+                  <p className="mt-4 max-w-md font-serif text-[clamp(2.6rem,5vw,4.8rem)] leading-[1.05] text-stone-900">
+                    короны, скипетр, держава
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+        <motion.div
+          {...slideMotion}
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 md:grid-cols-[0.95fr_1.05fr] lg:min-h-[calc(100svh-7rem)] lg:gap-16"
+        >
+          <div className="flex flex-col justify-center">
+            <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+              Новый визуальный язык
+            </p>
+            <h2 className="mt-5 max-w-3xl font-serif text-[clamp(3rem,7vw,6.6rem)] leading-[0.92]">
+              Знаки новой эпохи
+            </h2>
+            <div className="my-8 h-px w-72 max-w-full bg-stone-950/30" />
+            <p className="max-w-xl text-lg leading-8 text-stone-700 sm:text-xl">
+              Серп, молот, колосья и земной шар обозначали уже не династическую
+              преемственность, а труд, революцию, союз республик и новый образ
+              будущего.
+            </p>
+          </div>
+
+          <div className="grid content-center gap-8">
+            <div className="image-frame mx-auto inline-flex w-fit max-w-full p-3 sm:p-4">
+              <img
+                src={epoch3Slide2Image}
+                alt="Советская эмблема"
+                className="max-h-[50vh] max-w-[min(72vw,430px)] object-contain"
+              />
+            </div>
+
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+        <motion.div
+          {...slideMotion}
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 lg:min-h-[calc(100svh-7rem)]"
+        >
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:items-start">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+                Эпоха {fourthEpoch.number} / {fourthEpoch.period}
+              </p>
+              <h2 className="mt-6 max-w-5xl font-serif text-[clamp(3.5rem,8vw,8rem)] leading-[0.9]">
+                {fourthEpoch.title}
+              </h2>
+            </div>
+
+            <p className="font-serif text-[clamp(6rem,15vw,14rem)] leading-none text-stone-950">
+              1993
+            </p>
+          </div>
+
+          <div className="grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-[0.85fr_1.15fr]">
+            <p className="border-l border-stone-950/20 pl-6 text-2xl leading-9 text-stone-700">
+              {fourthEpoch.subtitle}
+            </p>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              <p className="text-lg leading-8 text-stone-700 sm:text-xl">
+                {fourthEpoch.body}
+              </p>
+              <p className="text-lg leading-8 text-stone-700 sm:text-xl">
+                {fourthEpoch.body2}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+        <motion.div
+          {...slideMotion}
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 md:grid-cols-[0.9fr_1.1fr] lg:min-h-[calc(100svh-7rem)] lg:gap-16"
+        >
+          <div className="flex flex-col justify-center">
+            <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+              Современный герб
+            </p>
+            <h2 className="mt-5 max-w-3xl font-serif text-[clamp(3rem,7vw,6.6rem)] leading-[0.92]">
+              Преемственность без монархии
+            </h2>
+            <div className="my-8 h-px w-72 max-w-full bg-stone-950/30" />
+            <p className="max-w-xl text-lg leading-8 text-stone-700 sm:text-xl">
+              Золотой орел на красном поле возвращает историческую композицию, но
+              работает уже как символ современной федерации. Его смысл держится не
+              на восстановлении империи, а на памяти формы.
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <div className="image-frame inline-flex w-fit max-w-full p-3 sm:p-4">
+              <img
+                src={epoch4Slide1Image}
+                alt="Современный герб России"
+                className="max-h-[56vh] max-w-[min(72vw,380px)] object-contain"
+              />
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="snap-section epoch-section min-h-svh overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-14 xl:px-20">
+        <motion.div
+          {...slideMotion}
+          className="grid min-h-[calc(100svh-5rem)] grid-cols-1 content-center gap-12 md:grid-cols-[1.05fr_0.95fr] lg:min-h-[calc(100svh-7rem)] lg:gap-16"
+        >
+          <div className="flex items-center justify-center md:order-1">
+            <div className="image-frame inline-flex w-fit max-w-full p-3 sm:p-4">
+              <img
+                src={epoch4Slide2Image}
+                alt="Монеты 90-х с современным гербом"
+                className="max-h-[52vh] max-w-[min(76vw,560px)] object-contain"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center md:order-2">
+            <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+              Герб в повседневности
+            </p>
+            <h2 className="mt-5 max-w-3xl font-serif text-[clamp(3rem,7vw,6.6rem)] leading-[0.92]">
+              Символ снова становится знаком государства
+            </h2>
+            <div className="my-8 h-px w-72 max-w-full bg-stone-950/30" />
+            <p className="max-w-xl text-lg leading-8 text-stone-700 sm:text-xl">
+              В 1990-е орел быстро возвращается на привычные носители: документы,
+              официальные знаки и деньги. Монеты особенно хорошо показывают этот
+              переход — исторический образ снова входит в ежедневный оборот.
+            </p>
+          </div>
+        </motion.div>
+      </section>
     </main>
   )
 }
