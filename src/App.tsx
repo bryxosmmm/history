@@ -11,6 +11,7 @@ import epoch3Slide1Image from './assets/epoch_3_slide_1.jpg'
 import epoch3Slide2Image from './assets/epoch_3_slide_2.jpg'
 import epoch4Slide1Image from './assets/epoch_4_slide_1.jpg'
 import epoch4Slide2Image from './assets/epoch_4_slide_2.jpg'
+import lastOneImage from './assets/last_one.jpg'
 
 const firstEpoch = {
   number: 'I',
@@ -34,6 +35,7 @@ const imperialSlides = [
     eyebrow: 'Герб XVII века',
     title: 'Скипетр, держава и короны',
     image: epoch2Slide1Image,
+    extraImage: lastOneImage,
     imageLabel: 'изображение герба XVII-XIX веков',
     body: 'Скипетр держится в одной лапе орла, держава в другой. Благодаря этому изображение стало более симметричным и торжественным. Такие детали хорошо видны на печатях и официальных изображениях XVII века.'
   },
@@ -87,6 +89,10 @@ const imageFacts = {
   epoch2Slide1: {
     title: 'XVII-XIX века',
     text: 'Три короны появились не сразу. До этого орла могли изображать без привычного современному зрителю набора деталей.'
+  },
+  lastOne: {
+    title: 'XVIII-XIX века',
+    text: 'Двуглавого орла часто помещали на дорогие предметы. Так знак попадал не только на документы, но и в парадную культуру.'
   },
   epoch2Slide2: {
     title: 'XVIII-XIX века',
@@ -358,20 +364,40 @@ function App() {
             </div>
 
             <div className={index === 1 ? 'md:order-1' : ''}>
-              <div className="image-frame mx-auto inline-flex w-fit max-w-full p-2 sm:p-3">
-                <img
-                  src={slide.image}
-                  alt={slide.imageLabel}
-                  className={
-                    index === 0
-                      ? 'max-h-[54vh] max-w-[min(72vw,430px)] object-contain'
-                      : index === 1
+              {index === 0 ? (
+                <div className="grid items-center gap-5 sm:grid-cols-[0.72fr_1fr]">
+                  <div className="image-frame mx-auto inline-flex w-fit max-w-full p-2 sm:p-3">
+                    <img
+                      src={slide.image}
+                      alt={slide.imageLabel}
+                      className="max-h-[46vh] max-w-[min(60vw,300px)] object-contain"
+                    />
+                    <FactButton factKey="epoch2Slide1" />
+                  </div>
+
+                  <div className="image-frame mx-auto inline-flex w-fit max-w-full p-2 sm:p-3 sm:translate-y-10">
+                    <img
+                      src={slide.extraImage}
+                      alt="Предметы с двуглавым орлом"
+                      className="max-h-[38vh] max-w-[min(66vw,430px)] object-contain"
+                    />
+                    <FactButton factKey="lastOne" />
+                  </div>
+                </div>
+              ) : (
+                <div className="image-frame mx-auto inline-flex w-fit max-w-full p-2 sm:p-3">
+                  <img
+                    src={slide.image}
+                    alt={slide.imageLabel}
+                    className={
+                      index === 1
                         ? 'max-h-[58vh] max-w-[min(74vw,520px)] object-contain'
                         : 'max-h-[56vh] max-w-[min(70vw,390px)] object-contain'
-                  }
-                />
-                <FactButton factKey={index === 0 ? 'epoch2Slide1' : index === 1 ? 'epoch2Slide2' : 'epoch2Slide3'} />
-              </div>
+                    }
+                  />
+                  <FactButton factKey={index === 1 ? 'epoch2Slide2' : 'epoch2Slide3'} />
+                </div>
+              )}
             </div>
           </motion.div>
         </section>
