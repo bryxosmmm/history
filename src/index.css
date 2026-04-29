@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.97 0.015 83);
+  --foreground: oklch(0.22 0.01 65);
+  --card: oklch(0.98 0.013 83);
+  --card-foreground: oklch(0.22 0.01 65);
+  --popover: oklch(0.98 0.013 83);
+  --popover-foreground: oklch(0.22 0.01 65);
+  --primary: oklch(0.22 0.01 65);
+  --primary-foreground: oklch(0.96 0.016 83);
+  --secondary: oklch(0.9 0.018 83);
+  --secondary-foreground: oklch(0.24 0.01 65);
+  --muted: oklch(0.91 0.014 83);
+  --muted-foreground: oklch(0.49 0.012 65);
+  --accent: oklch(0.88 0.02 80);
+  --accent-foreground: oklch(0.24 0.01 65);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.82 0.014 83);
+  --input: oklch(0.82 0.014 83);
+  --ring: oklch(0.45 0.012 65);
+  font-family:
+    Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  color: #1c1917;
+  background: #e8e3d8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  overscroll-behavior-y: contain;
+}
+
+* {
+  box-sizing: border-box;
+}
