@@ -1,29 +1,43 @@
 .site-shell {
-  background-image:
-    linear-gradient(rgba(41, 37, 36, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(41, 37, 36, 0.035) 1px, transparent 1px);
-  background-size: 32px 32px;
+  position: relative;
+  min-height: 100svh;
+  background: #f8f4eb;
+}
+
+.site-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(41, 37, 36, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41, 37, 36, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 78% 18%, rgba(168, 137, 82, 0.13), transparent 30rem),
+    radial-gradient(circle at 18% 78%, rgba(87, 78, 66, 0.08), transparent 28rem);
+  background-size: 42px 42px, 42px 42px, auto, auto;
 }
 
 .snap-section {
+  position: relative;
+  z-index: 1;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
-.archive-grid {
-  background:
-    radial-gradient(circle at 72% 32%, rgba(120, 113, 108, 0.12), transparent 30%),
-    radial-gradient(circle at 36% 66%, rgba(214, 180, 118, 0.14), transparent 30%);
-}
-
+.archive-grid,
 .epoch-section {
-  background:
-    radial-gradient(circle at 70% 46%, rgba(130, 112, 73, 0.16), transparent 32%),
-    linear-gradient(180deg, rgba(248, 244, 235, 0.92), rgba(239, 231, 216, 0.96));
+  background: transparent;
 }
 
-.epoch-layout {
-  align-items: center;
+.image-frame {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(41, 37, 36, 0.12);
+  border-radius: 14px;
+  background: #f3ebdd;
+  box-shadow: 0 18px 48px rgba(41, 37, 36, 0.1);
 }
 
 .epoch-art {
@@ -33,14 +47,14 @@
 
 .photo-placeholder {
   display: grid;
-  width: min(100%, 980px);
-  min-height: clamp(280px, 36vh, 460px);
+  width: min(100%, 760px);
+  min-height: clamp(280px, 42vh, 520px);
   place-items: center;
-  border: 1px solid rgba(41, 37, 36, 0.16);
-  border-radius: 8px;
+  border: 1px solid rgba(41, 37, 36, 0.14);
+  border-radius: 14px;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.04)),
-    #eee4d3;
+    linear-gradient(rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08)),
+    #efe5d5;
   box-shadow: 0 18px 50px rgba(41, 37, 36, 0.08);
 }
 
@@ -52,19 +66,11 @@
 }
 
 @media (max-width: 767px) {
-  .snap-section {
-    scroll-snap-align: start;
-  }
-
-  .epoch-art {
-    min-height: 320px;
+  html {
+    scroll-snap-type: y proximity;
   }
 
   .photo-placeholder {
     min-height: 300px;
-  }
-
-  .epoch-layout {
-    align-items: start;
   }
 }
